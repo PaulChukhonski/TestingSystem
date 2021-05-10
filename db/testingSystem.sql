@@ -1,0 +1,77 @@
+CREATE DATABASE testingSystem;
+USE testingSystem;
+
+CREATE TABLE topic (
+	topicId INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
+    description VARCHAR(100) NOT NULL,
+	name VARCHAR(100) NOT NULL
+);
+
+CREATE TABLE test (
+	testId INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
+	name VARCHAR(100) NOT NULL,
+    description VARCHAR(100) NOT NULL,
+    topicId INT NOT NULL,
+
+    FOREIGN KEY (topicId) REFERENCES topic (topicId) ON DELETE CASCADE
+);
+
+CREATE TABLE question (
+	questionId INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
+	description VARCHAR(100) NOT NULL,
+    testId INT NOT NULL,
+    
+    FOREIGN KEY (testId) REFERENCES test (testId)  ON DELETE CASCADE
+);
+
+CREATE TABLE answer (
+	answerId INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
+    description VARCHAR(100) NOT NULL,
+    correct BOOLEAN NOT NULL,
+	questionId INT NOT NULL,
+    
+    FOREIGN KEY (questionId) REFERENCES question (questionId) ON DELETE CASCADE
+);
+
+CREATE TABLE role (
+	roleId INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
+    role VARCHAR(100) NOT NULL
+);
+
+CREATE TABLE user (
+	userId INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
+    firstName VARCHAR(100) NOT NULL,
+    secondName VARCHAR(100) NOT NULL,
+    login VARCHAR(100) NOT NULL,
+    password VARCHAR(255) NOT NULL,
+	roleId INT NOT NULL,
+
+    FOREIGN KEY (roleId) REFERENCES role (roleId) ON DELETE CASCADE
+);
+
+CREATE TABLE statistic (
+	statisticId INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
+    date DATE NOT NULL,
+    correct BOOLEAN NOT NULL,
+    questionId INT NOT NULL,
+	userId INT NOT NULL,
+
+    FOREIGN KEY (userId) REFERENCES user (userId) ON DELETE CASCADE,
+    FOREIGN KEY (questionId) REFERENCES question (questionId) ON DELETE CASCADE
+);
+
+CREATE TABLE literature (
+	literatureId INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
+    description VARCHAR(100) NOT NULL,
+	questionId INT NOT NULL,
+
+    FOREIGN KEY (questionId) REFERENCES question (questionId)
+);
+
+CREATE TABLE link (
+	linkId INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
+    link VARCHAR(100) NOT NULL,
+	literatureId INT NOT NULL,
+
+    FOREIGN KEY (literatureId) REFERENCES literature (literatureId)
+);
