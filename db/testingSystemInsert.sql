@@ -33,9 +33,9 @@ VALUES
 
 INSERT INTO role 
 VALUES
-(1, 'User'),
-(2, 'Admin'),
-(3, 'Tutor');
+(1, 'ROLE_USER'),
+(2, 'ROLE_ADMIN'),
+(3, 'ROLE_TUTOR');
 
 INSERT INTO user 
 VALUES
