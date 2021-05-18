@@ -13,14 +13,14 @@ import javax.servlet.http.HttpServletResponse;
 
 @Controller
 public class MainController {
-    @GetMapping(value = "/")
-    public String homePage() {
-        return "index";
-    }
-
     @GetMapping(value = "/login")
     public String loginPage() {
         return "login";
+    }
+
+    @GetMapping(value = "/")
+    public String homePage() {
+        return "index";
     }
 
     @GetMapping(value = "/logout")
@@ -30,5 +30,23 @@ public class MainController {
             new SecurityContextLogoutHandler().logout(request, response, auth);
         }
         return "redirect:/login?logout";
+    }
+
+    @GetMapping(value = "/user")
+    public String userPage(ModelMap model) {
+        model.addAttribute("user", getPrincipal());
+        return "user";
+    }
+
+    static String getPrincipal() {
+        String username = null;
+        Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        if(principal instanceof UserDetails) {
+            username = ((UserDetails) principal).getUsername();
+        } else {
+            username = principal.toString();
+        }
+
+        return username;
     }
 }

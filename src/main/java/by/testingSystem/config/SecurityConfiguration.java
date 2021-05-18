@@ -15,9 +15,6 @@ import javax.sql.DataSource;
 @Configuration
 @EnableWebSecurity
 public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
-    @Autowired
-    private DataSource dataSource;
-
     private CustomSuccessHandler customSuccessHandler;
 
     @Autowired
@@ -33,23 +30,29 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
         return new BCryptPasswordEncoder();
     }
 
+    @Autowired
+    private DataSource dataSource;
+
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        http.authorizeRequests()
-                .antMatchers("/", "/home").access("hasRole('USER')")
-                .antMatchers("/admin/**").access("hasRole('ADMIN')")
-                .and().formLogin().loginPage("/login").successHandler(customSuccessHandler)
-                .usernameParameter("ssold").passwordParameter("password")
-                .and().csrf()
-                .and().exceptionHandling().accessDeniedPage("/Access_Denied");
+        http
+            .csrf().disable()
+                .authorizeRequests()
+                    .antMatchers("/", "/user").permitAll()
+                    .anyRequest().authenticated();
+        http
+            .formLogin()
+                .loginPage("/login")
+                .permitAll()
+                .and()
+            .logout()
+                .permitAll();
     }
 
     @Autowired
     public void configureGlobalSecurity(AuthenticationManagerBuilder auth) throws Exception {
-        auth.inMemoryAuthentication()
-            .passwordEncoder(passwordEncoder)
-            .withUser("user").password(passwordEncoder.encode("user")).roles("USER")
-            .and()
-            .withUser("admin").password(passwordEncoder.encode("admin")).roles("ADMIN");
+        auth.jdbcAuthentication().dataSource(dataSource).passwordEncoder(passwordEncoder)
+                .usersByUsernameQuery("select login, password, roleId from user where login=?")
+                .authoritiesByUsernameQuery("select login, nameRole from user where login=?");
     }
 }
