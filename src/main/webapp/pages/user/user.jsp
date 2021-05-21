@@ -5,7 +5,9 @@
     <title>User</title>
 </head>
 <body>
-    <a href="<c:url value="/logout"/>"> Exit</a>
-    <h1>Hello ${user}</h1>
+    <p>Приветствуем тебя, ${user}</p>
+    <a href="<c:url value="/logout"/>"> Выйти</a>
+    <a href="<c:url value="/chooseTest"/>">Выбор темы и теста</a>
+    <a href="<c:url value="/personalStatistic"/>">Личная статистика</a>
 </body>
 </html>

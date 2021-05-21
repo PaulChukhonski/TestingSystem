@@ -7,26 +7,25 @@
 <body>
 <div>
     <div>
-        <c:url var="loginUrl" value="/login"/>
-        <form action="${loginUrl}" method="post">
+        <form action="/login" method="post">
             <c:if test="${param.error != null}">
                 <div>
-                    <p>Invalid username or password.</p>
+                    <p>Неверное имя пользователя или пароль!</p>
                 </div>
             </c:if>
             <c:if test="${param.logout != null}">
                 <div>
-                    <p>You've been logout successfully.</p>
+                    <p>Вы вышли из аккаунта успешно.</p>
                 </div>
             </c:if>
             <div>
-                <input type="text" id="username" name="username" placeholder="Username" required>
+                <input type="text" id="username" name="username" placeholder="Логин" required>
             </div>
             <div>
-                <input type="text" id="password" name="password" placeholder="Password" required>
+                <input type="password" id="password" name="password" placeholder="Пароль" required>
             </div>
             <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
-            <input type="submit" value="Enter">
+            <input type="submit" value="Войти">
         </form>
     </div>
 </div>
