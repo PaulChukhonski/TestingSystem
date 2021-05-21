@@ -39,10 +39,10 @@ VALUES
 
 INSERT INTO user 
 VALUES
-(1, 'User', 'User', 'User', 'User', 1),
-(2, 'Admin', 'Admin', 'Admin', 'Admin', 2),
-(3, 'Tutor', 'Tutor', 'Tutor', 'Tutor', 3),
-(4, 'Test', 'Test', 'Test', 'Test', 1);
+(1, 'User', 'User', 'User', '$2a$10$gRf9t0s9ZYLLlXvdQEXDD.Muv7.FtyRDzYqCqfKnKPFASxBAgPm72', 1),
+(2, 'Admin', 'Admin', 'Admin', '$2a$10$HZXXsAVQ/yi3iMYq3IY.H.09IPcGyadMJWUy0hqJia.G.FcJ/0d42', 2),
+(3, 'Tutor', 'Tutor', 'Tutor', '$2a$10$f3VLhjpMJg/Mxs/s/9/LluytvkE9TrvzAPMwhAJxt.8yvWq9XqUme', 3),
+(4, 'Test', 'Test', 'Test', '$2a$10$gZfF/e9G2c6Um4GCVNnLn..VOB/IXFWYs4di5RPBBJhpa9ffbs.LG', 1);
 
 INSERT INTO statistic 
 VALUES
