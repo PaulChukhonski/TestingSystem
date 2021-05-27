@@ -6,6 +6,7 @@ import javax.persistence.*;
 
 @Entity
 @Data
+@Table(name = "user")
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -21,7 +22,7 @@ public class User {
     private String login;
 
     @Column
-    private int password;
+    private String password;
 
     @OneToOne(cascade = CascadeType.REMOVE)
     private Role roleId;
