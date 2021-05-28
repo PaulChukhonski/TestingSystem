@@ -19,14 +19,7 @@ public class MainController {
     }
 
     @GetMapping(value = "/")
-    public String homePage(Authentication auth) {
-        if(auth != null) {
-            return "redirect:" + "/user";
-        }
-        else {
-            return "index";
-        }
-    }
+    public String homePage() { return "index"; }
 
     @GetMapping(value = "/logout")
     public String logoutPage(HttpServletRequest request, HttpServletResponse response) {
