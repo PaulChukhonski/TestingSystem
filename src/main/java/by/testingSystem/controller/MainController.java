@@ -19,8 +19,13 @@ public class MainController {
     }
 
     @GetMapping(value = "/")
-    public String homePage() {
-        return "index";
+    public String homePage(Authentication auth) {
+        if(auth != null) {
+            return "redirect:" + "/user";
+        }
+        else {
+            return "index";
+        }
     }
 
     @GetMapping(value = "/logout")
@@ -35,11 +40,11 @@ public class MainController {
     @GetMapping(value = "/user")
     public String userPage(ModelMap model) {
         model.addAttribute("user", getPrincipal());
-        return "user";
+        return "user/user";
     }
 
     static String getPrincipal() {
-        String username = null;
+        String username;
         Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         if(principal instanceof UserDetails) {
             username = ((UserDetails) principal).getUsername();

@@ -4,7 +4,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 
 @Controller
-public class MainUserController {
+public class UserMainController {
     @GetMapping(value = "/chooseTest")
     public String chooseTest() {
         return "user/userChoose";
