@@ -3,6 +3,7 @@ package by.testingSystem.service.impl;
 import by.testingSystem.model.Topic;
 import by.testingSystem.repository.TopicRepository;
 import by.testingSystem.service.TopicService;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.List;
 import java.util.Optional;
@@ -10,7 +11,7 @@ import java.util.Optional;
 public class TopicServiceImpl implements TopicService {
 
     private final TopicRepository topicRepository;
-
+    @Autowired
     public TopicServiceImpl(TopicRepository topicRepository) {
         this.topicRepository = topicRepository;
     }

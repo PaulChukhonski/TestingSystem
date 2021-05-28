@@ -1,7 +1,6 @@
 package by.testingSystem.service;
 
 import by.testingSystem.model.Statistic;
-import by.testingSystem.model.User;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
