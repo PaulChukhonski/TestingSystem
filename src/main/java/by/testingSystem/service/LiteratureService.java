@@ -7,9 +7,8 @@ import java.util.List;
 
 @Service
 public interface LiteratureService {
-    void create(Literature t);
-    void delete(Literature t);
-    void update(Literature t);
-    void save(Literature t);
+    Literature saveOrUpdate(Literature literature);
     List<Literature> findAll();
+    Literature findById(int id);
+    void delete(int id);
 }

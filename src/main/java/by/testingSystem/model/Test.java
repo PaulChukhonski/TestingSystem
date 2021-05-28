@@ -6,14 +6,17 @@ import javax.persistence.*;
 
 @Entity
 @Data
-@Table(name = "literature")
-public class Literature {
+@Table(name = "test")
+public class Test {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int literatureId;
+    private int testId;
+
+    private String name;
 
     private String description;
 
-    @OneToOne
-    private Question questionId;
+    @ManyToOne
+    @JoinColumn(name = "topicId")
+    private Topic topicId;
 }
