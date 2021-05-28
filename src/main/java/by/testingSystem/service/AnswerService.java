@@ -7,9 +7,8 @@ import java.util.List;
 
 @Service
 public interface AnswerService {
-    void create(Answer t);
-    void delete(Answer t);
-    void update(Answer t);
-    void save(Answer t);
+    Answer saveOrUpdate(Answer answer);
     List<Answer> findAll();
+    Answer findById(int id);
+    void delete(int id);
 }

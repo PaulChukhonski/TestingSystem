@@ -4,7 +4,6 @@ import by.testingSystem.model.Answer;
 import by.testingSystem.repository.AnswerRepository;
 import by.testingSystem.service.AnswerService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
 import java.util.List;
@@ -17,21 +16,25 @@ public class AnswerServiceImpl implements AnswerService {
 
     @Transactional
     @Override
-    public void create(Answer t) { answerRepository.create(t); }
+    public Answer saveOrUpdate(Answer answer) {
+        return answerRepository.save(answer);
+    }
 
     @Transactional
     @Override
-    public void delete(Answer t) { answerRepository.delete(t); }
+    public List<Answer> findAll() {
+        return answerRepository.findAll();
+    }
 
     @Transactional
     @Override
-    public void update(Answer t) { answerRepository.update(t); }
+    public Answer findById(int id) {
+        return answerRepository.findById(id).get();
+    }
 
     @Transactional
     @Override
-    public void save(Answer t) { answerRepository.save(t); }
-
-    @Transactional
-    @Override
-    public List<Answer> findAll() { return answerRepository.findAll(Answer.class); }
+    public void delete(int id) {
+        answerRepository.deleteById(id);
+    }
 }

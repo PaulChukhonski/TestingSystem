@@ -4,7 +4,6 @@ import by.testingSystem.model.Literature;
 import by.testingSystem.repository.LiteratureRepository;
 import by.testingSystem.service.LiteratureService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
 import java.util.List;
@@ -17,21 +16,23 @@ public class LiteratureServiceImpl implements LiteratureService {
 
     @Transactional
     @Override
-    public void create(Literature t) { literatureRepository.create(t); }
+    public Literature saveOrUpdate(Literature literature) { return literatureRepository.save(literature); }
 
     @Transactional
     @Override
-    public void delete(Literature t) { literatureRepository.delete(t); }
+    public List<Literature> findAll() {
+        return literatureRepository.findAll();
+    }
 
     @Transactional
     @Override
-    public void update(Literature t) { literatureRepository.update(t); }
+    public Literature findById(int id) {
+        return literatureRepository.findById(id).get();
+    }
 
     @Transactional
     @Override
-    public void save(Literature t) { literatureRepository.save(t); }
-
-    @Transactional
-    @Override
-    public List<Literature> findAll() { return literatureRepository.findAll(Literature.class); }
+    public void delete(int id) {
+        literatureRepository.deleteById(id);
+    }
 }

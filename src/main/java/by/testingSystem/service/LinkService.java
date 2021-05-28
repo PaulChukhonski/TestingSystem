@@ -7,9 +7,8 @@ import java.util.List;
 
 @Service
 public interface LinkService {
-    void create(Link t);
-    void delete(Link t);
-    void update(Link t);
-    void save(Link t);
+    Link saveOrUpdate(Link link);
     List<Link> findAll();
+    Link findById(int id);
+    void delete(int id);
 }
