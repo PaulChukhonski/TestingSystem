@@ -2,6 +2,7 @@ package by.testingSystem.service.impl;
 
 import by.testingSystem.model.Statistic;
 import by.testingSystem.service.StatisticService;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.List;
 
@@ -9,6 +10,7 @@ public class StatisticServiceImpl implements StatisticService {
 
     private final StatisticService statisticService;
 
+    @Autowired
     public StatisticServiceImpl(StatisticService statisticService) {
         this.statisticService = statisticService;
     }
