@@ -5,7 +5,6 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-@Service
 public interface TopicService {
     Topic saveOrUpdate(Topic topic);
     List<Topic> findAll();

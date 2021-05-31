@@ -4,10 +4,12 @@ import by.testingSystem.model.Literature;
 import by.testingSystem.repository.LiteratureRepository;
 import by.testingSystem.service.LiteratureService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
 import java.util.List;
 
+@Service
 public class LiteratureServiceImpl implements LiteratureService {
     private LiteratureRepository literatureRepository;
 

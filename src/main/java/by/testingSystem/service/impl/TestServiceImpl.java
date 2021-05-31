@@ -4,15 +4,19 @@ import by.testingSystem.model.Test;
 import by.testingSystem.repository.TestRepository;
 import by.testingSystem.service.TestService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
+@Service
 public class TestServiceImpl implements TestService {
-    private TestRepository testRepository;
+    private final TestRepository testRepository;
 
     @Autowired
-    public void setTestRepository(TestRepository testRepository) { this.testRepository = testRepository; }
+    public TestServiceImpl(TestRepository testRepository) {
+        this.testRepository = testRepository;
+    }
 
     @Transactional
     @Override

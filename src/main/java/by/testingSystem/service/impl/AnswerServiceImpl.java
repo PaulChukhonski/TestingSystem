@@ -4,15 +4,19 @@ import by.testingSystem.model.Answer;
 import by.testingSystem.repository.AnswerRepository;
 import by.testingSystem.service.AnswerService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
 import java.util.List;
 
+@Service
 public class AnswerServiceImpl implements AnswerService {
-    private AnswerRepository answerRepository;
+    private final AnswerRepository answerRepository;
 
     @Autowired
-    public void setAnswerRepository(AnswerRepository answerRepository) { this.answerRepository = answerRepository; }
+    public AnswerServiceImpl(AnswerRepository answerRepository) {
+        this.answerRepository = answerRepository;
+    }
 
     @Transactional
     @Override

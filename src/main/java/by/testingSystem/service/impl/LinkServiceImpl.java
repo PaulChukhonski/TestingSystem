@@ -4,15 +4,19 @@ import by.testingSystem.model.Link;
 import by.testingSystem.repository.LinkRepository;
 import by.testingSystem.service.LinkService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
 import java.util.List;
 
+@Service
 public class LinkServiceImpl implements LinkService {
-    private LinkRepository linkRepository;
+    private final LinkRepository linkRepository;
 
     @Autowired
-    public void setLinkRepository(LinkRepository linkRepository) { this.linkRepository = linkRepository; }
+    public LinkServiceImpl(LinkRepository linkRepository) {
+        this.linkRepository = linkRepository;
+    }
 
     @Transactional
     @Override

@@ -4,10 +4,12 @@ import by.testingSystem.model.Question;
 import by.testingSystem.repository.QuestionRepository;
 import by.testingSystem.service.QuestionService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
+@Service
 public class QuestionServiceImpl implements QuestionService {
     private QuestionRepository questionRepository;
 
