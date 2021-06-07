@@ -3,6 +3,7 @@ package by.testingSystem.model;
 import lombok.Data;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Data
@@ -17,4 +18,7 @@ public class Topic {
 
     @Column
     private String name;
+
+    @OneToMany(mappedBy = "topic")
+    private List<Test> tests;
 }

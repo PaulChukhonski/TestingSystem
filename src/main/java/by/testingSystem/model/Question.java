@@ -3,6 +3,7 @@ package by.testingSystem.model;
 import lombok.Data;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Data
@@ -16,5 +17,14 @@ public class Question {
 
     @ManyToOne
     @JoinColumn(name = "testId")
-    private Test testId;
+    private Test test;
+
+    @OneToOne
+    private Literature literature;
+
+    @OneToMany(mappedBy = "question")
+    private List<Answer> Answers;
+
+    @OneToMany(mappedBy = "question")
+    private List<Statistic> statistics;
 }

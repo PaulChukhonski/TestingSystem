@@ -39,7 +39,8 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
             .csrf().disable()
                 .authorizeRequests()
                     .antMatchers("/").permitAll()
-                    .antMatchers("/user").access("hasRole('ROLE_USER')")
+//                    .antMatchers("/user").access("hasRole('ROLE_USER')")
+//                .antMatchers("/resources/**").permitAll()
                     .anyRequest().authenticated();
         http
             .formLogin()
@@ -54,7 +55,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     @Autowired
     public void configureGlobalSecurity(AuthenticationManagerBuilder auth) throws Exception {
         auth.jdbcAuthentication().dataSource(dataSource).passwordEncoder(passwordEncoder)
-                .usersByUsernameQuery("select login, password, roleId_roleId from user where login=?")
-                .authoritiesByUsernameQuery("select login, role from user join role on user.roleId_roleId=role.roleId where login=?");
+                .usersByUsernameQuery("select login, password, role_roleId from user where login=?")
+                .authoritiesByUsernameQuery("select login, role from user join role on user.role_roleId=role.roleId where login=?");
     }
 }

@@ -3,6 +3,7 @@ package by.testingSystem.model;
 import lombok.Data;
 
 import javax.persistence.*;
+import java.time.LocalDate;
 
 @Entity
 @Data
@@ -13,12 +14,14 @@ public class Statistic {
     private int statisticId;
 
     @Column
+    private LocalDate date = LocalDate.now();
+
+    @Column
     private boolean correct;
 
-//    @OneToOne
-//    private Qustion questionId;
-    // TODO: 5/27/21 add Question
+    @ManyToOne
+    private Question question;
 
-    @OneToOne
-    private User userId;
+    @ManyToOne
+    private User user;
 }

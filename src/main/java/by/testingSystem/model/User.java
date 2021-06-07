@@ -3,6 +3,7 @@ package by.testingSystem.model;
 import lombok.Data;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Data
@@ -24,6 +25,9 @@ public class User {
     @Column
     private String password;
 
-    @OneToOne(cascade = CascadeType.REMOVE)
-    private Role roleId;
+    @ManyToOne(cascade = CascadeType.REMOVE)
+    private Role role;
+
+    @OneToMany(mappedBy = "user")
+    private List<Statistic> statistics;
 }

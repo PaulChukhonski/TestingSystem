@@ -18,5 +18,5 @@ public class Answer {
 
     @ManyToOne
     @JoinColumn(name = "questionId")
-    private Question questionId;
+    private Question question;
 }
