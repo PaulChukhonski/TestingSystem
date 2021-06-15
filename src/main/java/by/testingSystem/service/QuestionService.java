@@ -1,7 +1,7 @@
 package by.testingSystem.service;
 
 import by.testingSystem.model.Question;
-import org.springframework.stereotype.Service;
+import by.testingSystem.model.projection.QuestionStatistic;
 
 import java.util.List;
 
@@ -10,4 +10,6 @@ public interface QuestionService {
     List<Question> findAll();
     Question findById(int id);
     void delete(int id);
+    List<QuestionStatistic> getStatistic();
+
 }

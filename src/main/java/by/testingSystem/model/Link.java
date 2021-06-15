@@ -13,7 +13,4 @@ public class Link {
     private int linkId;
 
     private String link;
-
-    @OneToOne
-    private Literature literatureId;
 }

@@ -15,7 +15,7 @@ import javax.servlet.http.HttpServletResponse;
 public class MainController {
     @GetMapping(value = "/login")
     public String loginPage() {
-        return "login";
+        return "index";
     }
 
     @GetMapping(value = "/")

@@ -15,5 +15,5 @@ public class Literature {
     private String description;
 
     @OneToOne
-    private Question questionId;
+    private Link link;
 }
