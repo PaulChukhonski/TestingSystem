@@ -19,7 +19,7 @@ public class Statistic {
     @Column
     private boolean correct;
 
-    @ManyToOne
+    @ManyToOne()
     private Question question;
 
     @ManyToOne

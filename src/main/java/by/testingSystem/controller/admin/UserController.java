@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import static java.util.stream.Collectors.toList;
 
 @Controller
-@RequestMapping(path = "/user")
+@RequestMapping(path = "/admin/user")
 public class UserController {
 
     @Autowired
@@ -36,6 +36,7 @@ public class UserController {
     @PostMapping
     public String createUser(Model model, @ModelAttribute User user) {
         userService.saveOrUpdate(user);
-        return "/admin/home";
+        model.addAttribute("infoByUser", "Новый пользователь с именем " + user.getFirstName() + ' ' + user.getLastName() + "был создан!");
+        return "/admin/admin-home";
     }
 }

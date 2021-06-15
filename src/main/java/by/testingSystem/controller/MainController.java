@@ -15,7 +15,7 @@ import javax.servlet.http.HttpServletResponse;
 public class MainController {
     @GetMapping(value = "/login")
     public String loginPage() {
-        return "login";
+        return "index";
     }
 
     @GetMapping(value = "/")
@@ -30,11 +30,11 @@ public class MainController {
         return "redirect:/login?logout";
     }
 
-//    @GetMapping(value = "/user")
-//    public String userPage(ModelMap model) {
-//        model.addAttribute("user", getPrincipal());
-//        return "user/user";
-//    }
+    @GetMapping(value = "/user")
+    public String userPage(ModelMap model) {
+        model.addAttribute("user", getPrincipal());
+        return "user/user";
+    }
 
     static String getPrincipal() {
         String username;

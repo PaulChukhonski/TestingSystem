@@ -2,6 +2,7 @@ package by.testingSystem.service.impl;
 
 import by.testingSystem.model.Role;
 import by.testingSystem.model.User;
+import by.testingSystem.model.projection.UserStatistic;
 import by.testingSystem.repository.RoleRepository;
 import by.testingSystem.repository.UserRepository;
 import by.testingSystem.service.UserService;
@@ -62,5 +63,10 @@ public class UserServiceImpl implements UserService {
     @Override
     public void delete(int id) {
         userRepository.deleteById(id);
+    }
+
+    @Override
+    public List<UserStatistic> getStatistic() {
+        return userRepository.getStatistic();
     }
 }

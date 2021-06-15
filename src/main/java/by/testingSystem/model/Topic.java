@@ -1,6 +1,6 @@
 package by.testingSystem.model;
 
-import lombok.Data;
+import lombok.*;
 
 import javax.persistence.*;
 import java.util.List;
@@ -19,6 +19,7 @@ public class Topic {
     @Column
     private String name;
 
-    @OneToMany(mappedBy = "topic")
+    @ToString.Exclude
+    @OneToMany(mappedBy = "topic", fetch = FetchType.EAGER)
     private List<Test> tests;
 }

@@ -3,6 +3,8 @@ package by.testingSystem.model;
 import lombok.Data;
 
 import javax.persistence.*;
+import java.net.URLClassLoader;
+import java.util.Objects;
 
 @Entity
 @Data

@@ -30,12 +30,11 @@ public class CustomSuccessHandler extends SimpleUrlAuthenticationSuccessHandler 
         redirectStrategy.sendRedirect(request, response, targetUrl);
     }
 
-
     private String determineTargetUrl(Authentication authentication) {
         String url;
+        List<String> roles = new ArrayList();
 
         Collection<? extends GrantedAuthority> authorities = authentication.getAuthorities();
-        List<String> roles = new ArrayList();
 
         for (GrantedAuthority a : authorities) {
             roles.add(a.getAuthority());

@@ -1,5 +1,7 @@
 package by.testingSystem.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import lombok.Builder;
 import lombok.Data;
 
 import javax.persistence.*;
@@ -17,10 +19,13 @@ public class Test {
 
     private String description;
 
-    @ManyToOne
+    @JsonIgnore
+    @ManyToOne()
     @JoinColumn(name = "topicId")
     private Topic topic;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "test")
     private List<Question> question;
+
 }

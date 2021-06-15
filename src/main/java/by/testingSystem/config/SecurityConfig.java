@@ -5,6 +5,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -14,7 +15,7 @@ import javax.sql.DataSource;
 
 @Configuration
 @EnableWebSecurity
-public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
+public class SecurityConfig extends WebSecurityConfigurerAdapter {
     private CustomSuccessHandler customSuccessHandler;
 
     @Autowired
@@ -25,30 +26,37 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     @Autowired
     private PasswordEncoder passwordEncoder;
 
+    @Autowired
+    private DataSource dataSource;
+
     @Bean
     public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
     }
 
-    @Autowired
-    private DataSource dataSource;
+    @Override
+    public void configure(WebSecurity web) throws Exception {
+        web.ignoring().antMatchers("/resources/**");
+    }
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http
-            .csrf().disable()
+                .cors().disable()
+                .csrf().disable()
                 .authorizeRequests()
-                    .antMatchers("/").permitAll()
-//                    .antMatchers("/user").access("hasRole('ROLE_USER')")
-//                .antMatchers("/resources/**").permitAll()
+                .antMatchers("/").permitAll()
+                    .antMatchers("/admin/**").access("hasRole('ROLE_ADMIN')")
+                .antMatchers("/user/**").access("hasRole('ROLE_USER')")
+                .antMatchers("/tutor/**").access("hasRole('ROLE_TUTOR')")
                     .anyRequest().authenticated();
         http
-            .formLogin()
+                .formLogin()
                 .loginPage("/login")
                 .successHandler(customSuccessHandler)
                 .permitAll()
                 .and()
-            .logout()
+                .logout()
                 .permitAll();
     }
 
